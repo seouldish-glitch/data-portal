@@ -5,8 +5,8 @@ export const metadata = {
   description: "St. Benedict's College 161st Anniversary Digital Portal",
 };
 
-import Link from 'next/link';
 import LoadingScreen from './components/LoadingScreen';
+import Navbar from './components/Navbar';
 
 export default function RootLayout({
   children,
@@ -23,19 +23,7 @@ export default function RootLayout({
           <div className="orb orb-3"></div>
         </div>
         
-        <nav className="site-navbar">
-          <div className="nav-container">
-            <Link href="/" className="nav-brand">
-              <span className="nav-brand-text old-english-text">St. Benedict's College</span>
-            </Link>
-            <div className="nav-links">
-              <Link href="/" className="nav-link">Home</Link>
-              <Link href="/dashboard" className="nav-link">Dashboard</Link>
-              <Link href="/about" className="nav-link">About</Link>
-              <Link href="/dashboard" className="nav-btn-cta">Access Portal</Link>
-            </div>
-          </div>
-        </nav>
+        <Navbar />
 
         {children}
 
