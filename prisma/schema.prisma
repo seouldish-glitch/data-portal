@@ -1,0 +1,225 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model SportForm {
+  id                        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name                      String
+  micName                   String
+  micContact                String
+  headCoachName             String
+  assistantCoaches          String[]
+  captainName               String
+  captainContact            String
+  viceCaptainName           String
+  ageGroupCaptains          String[]
+  seniorSquadRoster         String // E.g., JSON string or long text mapping names to positions
+  yearOfInception           String
+  founder                   String?
+  firstMic                  String?
+  firstCoach                String?
+  firstCaptain              String?
+  internationalAchievements String
+  nationalAchievements      String
+  provincialAchievements    String
+  annualEncounters          String
+  nationalCaps              String[]
+  mediaLinks                String[] // URLs for logos, photos, socials
+  createdAt                 DateTime @default(now())
+  updatedAt                 DateTime @updatedAt
+}
+
+model ClubSocietyForm {
+  id                        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name                      String
+  micName                   String
+  micContact                String
+  presidentName             String
+  presidentContact          String
+  secretaryName             String
+  treasurerName             String
+  otherBoardMembers         String[]
+  activeMembersCount        Int
+  yearOfInception           String
+  founder                   String?
+  firstMic                  String?
+  firstPresident            String?
+  objectiveMotto            String
+  majorProjects             String[]
+  internationalAchievements String
+  nationalAchievements      String
+  provincialAchievements    String
+  notableAlumni             String[]
+  socialMediaLinks          String[]
+  mediaUploads              String[] // URLs to PNGs, photos
+  createdAt                 DateTime @default(now())
+  updatedAt                 DateTime @updatedAt
+}
+
+model PrefectsGuildForm {
+  id                      String   @id @default(auto()) @map("_id") @db.ObjectId
+  micName                 String
+  micContact              String
+  headPrefectName         String
+  headPrefectContact      String
+  deputyHeadPrefects      String[]
+  seniorPrefectsCount     Int
+  seniorPrefectsList      String[]
+  secondYearPrefectsCount Int
+  juniorPrefectsCount     Int
+  firstHeadPrefect        String
+  yearOfEstablishment     String
+  notablePastHeadPrefects String[]
+  majorAnnualEvents       String[]
+  coreDutiesMission       String
+  badgeLogoUrl            String?
+  officialPhotos          String[]
+  socialMediaLinks        String[]
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+}
+
+model AcademicAchievementForm {
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
+  stream             String // e.g., Science, Mathematics, Commerce, Arts, Tech
+  sectionalHeadName  String
+  totalStudents      Int
+  topPerformingClass String
+  passRates3Year     String?
+  topAchievers       String // e.g., JSON or formatted text
+  notableMilestones  String
+  subjectHighlights  String
+  notableAlumni      String[]
+  officialPhotos     String[]
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model HouseForm {
+  id                       String   @id @default(auto()) @map("_id") @db.ObjectId
+  houseName                String // Camillus / Cassian / Luke / Claude
+  level                    String // UPPER or PRIMARY
+  chiefHouseMaster         String
+  houseCaptain             String
+  viceCaptain              String // Vice-Captain for Upper, Assistant for Primary
+  housePrefects            String[]
+  motto                    String?
+  historyOrigin            String? // Upper only
+  athleticMeetAchievements String
+  totalActiveMembers       Int
+  sportingHighlights       String? // Primary only
+  houseFlagUrl             String?
+  actionPhotos             String[]
+  notableAlumni            String[] // Upper only
+  specialShields           String? // Upper only
+  cheerLyrics              String?
+  primaryActivities        String? // Primary only
+  primaryAwards            String? // Primary only
+  primaryContact           String? // Primary only
+  socialMediaLinks         String[]
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime @updatedAt
+}
+
+model ObuDataForm {
+  id                     String   @id @default(auto()) @map("_id") @db.ObjectId
+  branchName             String
+  presidentName          String
+  secretaryName          String
+  officialContact        String
+  registeredMembersCount Int
+  keyContributions       String
+  upcomingEvents         String
+  distinguishedAlumni    String[]
+  logoUrl                String?
+  socialMediaLinks       String[]
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+}
+
+model AssociationForm {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  associationName   String
+  presidentName     String
+  micName           String
+  officialContact   String
+  registeredMembers Int
+  keyContributions  String
+  upcomingEvents    String?
+  logoUrl           String?
+  socialMediaLinks  String[]
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model SportsWingForm {
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
+  wingName           String
+  affiliatedSport    String
+  presidentName      String
+  presidentContact   String
+  secretaryName      String
+  treasurerName      String
+  activeMembersCount Int
+  inceptionYear      String
+  keyContributions   String
+  majorEvents        String?
+  socialMediaLinks   String[]
+  mediaUploads       String[]
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model AlumniBatchForm {
+  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  batchYear           String
+  presidentName       String
+  presidentContact    String
+  secretaryName       String
+  activeMembers       Int
+  contributions       String
+  majorEvents         String?
+  distinguishedAlumni String[]
+  socialMediaLinks    String[]
+  mediaUploads        String[]
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+model TeachersGuildForm {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  guildName        String
+  presidentName    String
+  presidentContact String
+  secretaryName    String
+  treasurerName    String
+  totalMembers     Int
+  mission          String
+  majorEvents      String?
+  contributions    String?
+  mediaUploads     String[]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model WelfareSocietyForm {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  societyName       String
+  presidentName     String
+  presidentContact  String
+  secretaryName     String
+  treasurerName     String
+  registeredMembers Int
+  inceptionYear     String
+  mission           String
+  annualEvents      String?
+  contributions     String?
+  mediaUploads      String[]
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
