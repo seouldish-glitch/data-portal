@@ -77,18 +77,28 @@ export default function Home() {
     <div className="page-wrapper">
       <main className="main-content">
         <section className="hero-section">
-          <div className="hero-content">
-            <div className="hero-badge">161st Anniversary Digital Project</div>
-            <h1 className="old-english-text">St. Benedict's College</h1>
-            <h2 className="modern-subheadline">Master Data Portal</h2>
-            <p className="hero-description">
-              Submit your sports, clubs, academic, and society data today to ensure your legacy is permanently archived on our new official website.
-            </p>
-            <div className="hero-buttons">
-              <a href="#forms-list" className="hero-btn-primary">Submit Records &rarr;</a>
+          <div className="hero-grid">
+            <div className="hero-left">
+              <div className="hero-badge">
+                <span className="pulse-dot"></span>
+                161st Anniversary Digital Project
+              </div>
+              <h1 className="old-english-text hero-title">St. Benedict's College</h1>
+              <h2 className="modern-subheadline">Master Data Portal</h2>
+              <p className="hero-description">
+                Submit your sports, clubs, academic, and society data today to ensure your legacy is permanently archived on our new official website.
+              </p>
+              <div className="hero-buttons">
+                <a href="#forms-list" className="hero-btn-primary">
+                  <span>Submit Records</span>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
-          <div className="hero-watermark"></div>
         </section>
 
         <div id="forms-list" className="data-collection-list">

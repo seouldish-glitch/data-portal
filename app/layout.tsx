@@ -30,7 +30,7 @@ export default function RootLayout({
         <footer className="site-footer">
           <div className="footer-content">
             <div className="footer-section footer-col-1" style={{ flex: 1.5 }}>
-              <h4 className="old-english-text" style={{ textTransform: 'none', fontSize: '1.8rem', letterSpacing: '1px', color: 'var(--sbc-white)' }}>St. Benedict's College</h4>
+              <h4 className="footer-brand old-english-text">St. Benedict's College</h4>
               <p className="footer-about-text">
                 This data collection initiative is a project by the St. Benedict's College Media Web Developing Department. We are securely collecting this information exclusively for the St. Benedict's College official website development project in celebration of the upcoming 161st Anniversary.
               </p>
