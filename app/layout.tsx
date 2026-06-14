@@ -6,6 +6,7 @@ export const metadata = {
 };
 
 import Link from 'next/link';
+import LoadingScreen from './components/LoadingScreen';
 
 export default function RootLayout({
   children,
@@ -15,6 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <LoadingScreen />
         <div className="bg-orbs">
           <div className="orb orb-1"></div>
           <div className="orb orb-2"></div>
@@ -24,7 +26,7 @@ export default function RootLayout({
         <nav className="site-navbar">
           <div className="nav-container">
             <Link href="/" className="nav-brand">
-              <span className="nav-brand-text">St. Benedict's College</span>
+              <span className="nav-brand-text old-english-text">St. Benedict's College</span>
             </Link>
             <div className="nav-links">
               <Link href="/" className="nav-link">Home</Link>

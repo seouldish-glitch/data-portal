@@ -86,7 +86,6 @@ export default function Home() {
             </p>
             <div className="hero-buttons">
               <a href="#forms-list" className="hero-btn-primary">Submit Records &rarr;</a>
-              <Link href="/dashboard" className="hero-btn-secondary">View Dashboard</Link>
             </div>
           </div>
           <div className="hero-watermark"></div>
