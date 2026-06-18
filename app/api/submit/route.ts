@@ -332,6 +332,92 @@ export async function POST(req: NextRequest) {
         break;
       }
 
+      case 'choir': {
+        const mediaUploads = await uploadFiles('mediaUploads');
+        const leaders = parseTextToArray(formData.get('leaders') as string);
+        const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
+
+        result = await prisma.choirForm.create({
+          data: {
+            subCategory: (formData.get('subCategory') as string) || '',
+            micName: (formData.get('micName') as string) || '',
+            choirMaster: (formData.get('choirMaster') as string) || '',
+            leaders,
+            membersCount: parseIntSafe(formData.get('membersCount') as string),
+            achievements: (formData.get('achievements') as string) || '',
+            events: (formData.get('events') as string) || '',
+            socialMediaLinks,
+            mediaUploads,
+          },
+        });
+        break;
+      }
+
+      case 'band': {
+        const mediaUploads = await uploadFiles('mediaUploads');
+        const committee = parseTextToArray(formData.get('committee') as string);
+        const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
+
+        result = await prisma.bandForm.create({
+          data: {
+            bandCategory: (formData.get('bandCategory') as string) || '',
+            micName: (formData.get('micName') as string) || '',
+            bandMaster: (formData.get('bandMaster') as string) || '',
+            bandLeader: (formData.get('bandLeader') as string) || '',
+            committee,
+            membersCount: parseIntSafe(formData.get('membersCount') as string),
+            achievements: (formData.get('achievements') as string) || '',
+            events: (formData.get('events') as string) || '',
+            socialMediaLinks,
+            mediaUploads,
+          },
+        });
+        break;
+      }
+
+      case 'cadets': {
+        const mediaUploads = await uploadFiles('mediaUploads');
+        const corporals = parseTextToArray(formData.get('corporals') as string);
+        const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
+
+        result = await prisma.cadetsForm.create({
+          data: {
+            platoonName: (formData.get('platoonName') as string) || '',
+            oicName: (formData.get('oicName') as string) || '',
+            sergeantName: (formData.get('sergeantName') as string) || '',
+            corporals,
+            membersCount: parseIntSafe(formData.get('membersCount') as string),
+            camps: (formData.get('camps') as string) || '',
+            achievements: (formData.get('achievements') as string) || '',
+            socialMediaLinks,
+            mediaUploads,
+          },
+        });
+        break;
+      }
+
+      case 'scouts': {
+        const mediaUploads = await uploadFiles('mediaUploads');
+        const patrolLeaders = parseTextToArray(formData.get('patrolLeaders') as string);
+        const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
+
+        result = await prisma.scoutsForm.create({
+          data: {
+            troopName: (formData.get('troopName') as string) || '',
+            micName: (formData.get('micName') as string) || '',
+            gslName: (formData.get('gslName') as string) || '',
+            troopLeader: (formData.get('troopLeader') as string) || '',
+            patrolLeaders,
+            membersCount: parseIntSafe(formData.get('membersCount') as string),
+            camps: (formData.get('camps') as string) || '',
+            achievements: (formData.get('achievements') as string) || '',
+            socialMediaLinks,
+            mediaUploads,
+          },
+        });
+        break;
+      }
+
       default:
         return NextResponse.json({ error: `Category '${category}' is not supported` }, { status: 400 });
     }

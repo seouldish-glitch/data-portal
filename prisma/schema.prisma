@@ -223,3 +223,65 @@ model WelfareSocietyForm {
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 }
+
+model ChoirForm {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  subCategory      String
+  micName          String
+  choirMaster      String
+  leaders          String[]
+  membersCount     Int
+  achievements     String?
+  events           String?
+  socialMediaLinks String[]
+  mediaUploads     String[]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model BandForm {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  bandCategory     String
+  micName          String
+  bandMaster       String
+  bandLeader       String
+  committee        String[]
+  membersCount     Int
+  achievements     String?
+  events           String?
+  socialMediaLinks String[]
+  mediaUploads     String[]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model CadetsForm {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  platoonName      String
+  oicName          String
+  sergeantName     String
+  corporals        String[]
+  membersCount     Int
+  camps            String?
+  achievements     String?
+  socialMediaLinks String[]
+  mediaUploads     String[]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model ScoutsForm {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  troopName        String
+  micName          String
+  gslName          String
+  troopLeader      String
+  patrolLeaders    String[]
+  membersCount     Int
+  camps            String?
+  achievements     String?
+  socialMediaLinks String[]
+  mediaUploads     String[]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
