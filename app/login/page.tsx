@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import LoadingScreen from '@/app/components/LoadingScreen';
 export const dynamic = 'force-dynamic';
-export const revalidate = false;
+
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -50,7 +51,7 @@ export default function LoginPage() {
     }
   };
 
-  return (
+  return (<Suspense fallback={<LoadingScreen />}>
     <div className="page-wrapper" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#000000' }}>
       
       <div style={{
@@ -164,5 +165,5 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
-  );
+  </Suspense>);
 }

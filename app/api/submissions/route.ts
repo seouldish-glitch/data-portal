@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { prisma } from '../../lib/prisma';
 
+export const dynamic = 'force-dynamic';
 export async function GET(req: NextRequest) {
   try {
     const cookieStore = cookies();
