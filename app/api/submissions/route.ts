@@ -17,7 +17,34 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Category query parameter is required' }, { status: 400 });
     }
 
-    let submissions = [];
+    let submissions: any[] = [];
+
+    if (category === 'all') {
+      const allPromises = [
+        prisma.sportForm.findMany({ orderBy: { createdAt: 'desc' } }),
+        prisma.clubSocietyForm.findMany({ orderBy: { createdAt: 'desc' } }),
+        prisma.prefectsGuildForm.findMany({ orderBy: { createdAt: 'desc' } }),
+        prisma.academicAchievementForm.findMany({ orderBy: { createdAt: 'desc' } }),
+        prisma.houseForm.findMany({ orderBy: { createdAt: 'desc' } }),
+        prisma.associationForm.findMany({ orderBy: { createdAt: 'desc' } }),
+        prisma.obuDataForm.findMany({ orderBy: { createdAt: 'desc' } }),
+        prisma.sportsWingForm.findMany({ orderBy: { createdAt: 'desc' } }),
+        prisma.alumniBatchForm.findMany({ orderBy: { createdAt: 'desc' } }),
+        prisma.teachersGuildForm.findMany({ orderBy: { createdAt: 'desc' } }),
+        prisma.welfareSocietyForm.findMany({ orderBy: { createdAt: 'desc' } }),
+        prisma.choirForm.findMany({ orderBy: { createdAt: 'desc' } }),
+        prisma.bandForm.findMany({ orderBy: { createdAt: 'desc' } }),
+        prisma.cadetsForm.findMany({ orderBy: { createdAt: 'desc' } }),
+        prisma.scoutsForm.findMany({ orderBy: { createdAt: 'desc' } }),
+        prisma.orchestraForm.findMany({ orderBy: { createdAt: 'desc' } }),
+        prisma.bensWesleyCommitteeForm.findMany({ orderBy: { createdAt: 'desc' } })
+      ];
+      
+      const results = await Promise.all(allPromises);
+      submissions = results.flat().sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+      
+      return NextResponse.json({ success: true, data: submissions }, { status: 200 });
+    }
 
     switch (category) {
       case 'sports':
@@ -98,6 +125,11 @@ export async function GET(req: NextRequest) {
         break;
       case 'orchestra':
         submissions = await prisma.orchestraForm.findMany({
+          orderBy: { createdAt: 'desc' },
+        });
+        break;
+      case 'bens-wesley-committee':
+        submissions = await prisma.bensWesleyCommitteeForm.findMany({
           orderBy: { createdAt: 'desc' },
         });
         break;

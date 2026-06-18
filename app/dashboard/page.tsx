@@ -21,6 +21,7 @@ const CATEGORIES = [
   { slug: 'cadets', name: 'Cadets' },
   { slug: 'scouts', name: 'Scouts' },
   { slug: 'orchestra', name: 'Orchestra' },
+  { slug: 'bens-wesley-committee', name: 'Bens-Wesley Committee' },
 ];
 
 export default function DashboardPage() {
@@ -29,7 +30,7 @@ export default function DashboardPage() {
   const [loginError, setLoginError] = useState('');
   const [loginLoading, setLoginLoading] = useState(false);
 
-  const [activeCategory, setActiveCategory] = useState('sports');
+  const [activeCategory, setActiveCategory] = useState('all');
   const [submissions, setSubmissions] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -127,6 +128,25 @@ export default function DashboardPage() {
       case 'cadets': return sub.platoonName || 'Unnamed Platoon';
       case 'scouts': return sub.troopName || 'Unnamed Troop';
       case 'orchestra': return 'Orchestra';
+      case 'bens-wesley-committee': return sub.committeeName || 'Unnamed Committee';
+      case 'all': 
+        if (sub.name) return sub.name;
+        if (sub.clubName) return sub.clubName;
+        if (sub.headPrefectName) return `${sub.headPrefectName ? 'Upper' : 'Primary'} School Board`;
+        if (sub.stream) return `${sub.stream} Section`;
+        if (sub.houseName) return `${sub.houseName} House (${sub.level})`;
+        if (sub.associationName) return sub.associationName;
+        if (sub.branchName) return sub.branchName;
+        if (sub.wingName) return sub.wingName;
+        if (sub.batchYear) return `Batch of ${sub.batchYear}`;
+        if (sub.guildName) return sub.guildName;
+        if (sub.societyName) return sub.societyName;
+        if (sub.subCategory) return sub.subCategory;
+        if (sub.bandCategory) return sub.bandCategory;
+        if (sub.platoonName) return sub.platoonName;
+        if (sub.troopName) return sub.troopName;
+        if (sub.committeeName) return sub.committeeName;
+        return 'Submission Detail';
       default: return 'Submission Detail';
     }
   };
@@ -223,6 +243,16 @@ export default function DashboardPage() {
             <p>Select a category to view records</p>
           </div>
           <nav className="sidebar-nav">
+            <button
+              onClick={() => {
+                setActiveCategory('all');
+                setSearchQuery('');
+                setSelectedSubmission(null);
+              }}
+              className={`sidebar-link ${activeCategory === 'all' ? 'active' : ''}`}
+            >
+              All Submissions
+            </button>
             {CATEGORIES.map((cat) => (
               <button
                 key={cat.slug}
@@ -248,7 +278,7 @@ export default function DashboardPage() {
           <header className="dashboard-content-header">
             <div>
               <span className="dashboard-tag">Database Records</span>
-              <h1 className="dashboard-title">{CATEGORIES.find(c => c.slug === activeCategory)?.name}</h1>
+              <h1 className="dashboard-title">{activeCategory === 'all' ? 'All Submissions' : CATEGORIES.find(c => c.slug === activeCategory)?.name}</h1>
             </div>
             
             <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
@@ -311,8 +341,8 @@ export default function DashboardPage() {
                       {sub.micName && (
                         <p><strong>MIC:</strong> {sub.micName}</p>
                       )}
-                      {(sub.presidentName || sub.headPrefectName) && (
-                        <p><strong>Lead:</strong> {sub.presidentName || sub.headPrefectName}</p>
+                      {(sub.currentChairman || sub.presidentName || sub.headPrefectName) && (
+                        <p><strong>Lead:</strong> {sub.currentChairman || sub.presidentName || sub.headPrefectName}</p>
                       )}
                     </div>
                     <div className="card-footer">

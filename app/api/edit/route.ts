@@ -23,6 +23,8 @@ export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
     const category = req.nextUrl.searchParams.get('category');
+    const id = req.nextUrl.searchParams.get('id');
+    if (!id) return NextResponse.json({ error: 'ID is required' }, { status: 400 });
 
     if (!category) {
       return NextResponse.json({ error: 'Category query parameter is required' }, { status: 400 });
@@ -51,20 +53,23 @@ export async function POST(req: NextRequest) {
 
     const cookieStore = cookies();
     const userId = cookieStore.get('user_session')?.value || null;
-    const achievementPhotos = await uploadFiles('achievementPhotos');
+    const achievementPhotos = [...(formData.getAll('existing_achievementPhotos') as string[]), ...(await uploadFiles('achievementPhotos'))];
 
     let result;
 
     switch (category) {
       case 'sports': {
-        const logoUrl = await uploadSingleFile('logo');
-        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
-        const logoAndPhotos = await uploadFiles('mediaUploads');
+        let logoUrl = await uploadSingleFile('logo');
+        if (!logoUrl) logoUrl = formData.get('existing_logo') as string | null;
+        let groupPhotoUrl = await uploadSingleFile('groupPhoto');
+        if (!groupPhotoUrl) groupPhotoUrl = formData.get('existing_groupPhoto') as string | null;
+        const logoAndPhotos = [...(formData.getAll('existing_mediaUploads') as string[]), ...(await uploadFiles('mediaUploads'))];
         const assistantCoaches = parseTextToArray(formData.get('assistantCoaches') as string);
         const ageGroupCaptains = parseTextToArray(formData.get('ageGroupCaptains') as string);
         const nationalCaps = parseTextToArray(formData.get('nationalCaps') as string);
 
-        result = await prisma.sportForm.create({
+        result = await prisma.sportForm.update({
+          where: { id },
           data: {
             userId,
             achievementPhotos,
@@ -96,15 +101,18 @@ export async function POST(req: NextRequest) {
       }
 
       case 'clubs': {
-        const logoUrl = await uploadSingleFile('logo');
-        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
-        const mediaUploads = await uploadFiles('mediaUploads');
+        let logoUrl = await uploadSingleFile('logo');
+        if (!logoUrl) logoUrl = formData.get('existing_logo') as string | null;
+        let groupPhotoUrl = await uploadSingleFile('groupPhoto');
+        if (!groupPhotoUrl) groupPhotoUrl = formData.get('existing_groupPhoto') as string | null;
+        const mediaUploads = [...(formData.getAll('existing_mediaUploads') as string[]), ...(await uploadFiles('mediaUploads'))];
         const otherBoardMembers = parseTextToArray(formData.get('otherExco') as string);
         const majorProjects = parseTextToArray(formData.get('majorProjects') as string);
         const notableAlumni = parseTextToArray(formData.get('notableAlumni') as string);
         const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
 
-        result = await prisma.clubSocietyForm.create({
+        result = await prisma.clubSocietyForm.update({
+          where: { id },
           data: {
             userId,
             achievementPhotos,
@@ -136,10 +144,13 @@ export async function POST(req: NextRequest) {
       }
 
       case 'prefects': {
-        const logoUrl = await uploadSingleFile('logo');
-        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
-        const guildLogo = await uploadSingleFile('guildLogo');
-        const officialPhotos = await uploadFiles('officialPhotos');
+        let logoUrl = await uploadSingleFile('logo');
+        if (!logoUrl) logoUrl = formData.get('existing_logo') as string | null;
+        let groupPhotoUrl = await uploadSingleFile('groupPhoto');
+        if (!groupPhotoUrl) groupPhotoUrl = formData.get('existing_groupPhoto') as string | null;
+        let guildLogo = await uploadSingleFile('guildLogo');
+        if (!guildLogo) guildLogo = formData.get('existing_guildLogo') as string | null;
+        const officialPhotos = [...(formData.getAll('existing_officialPhotos') as string[]), ...(await uploadFiles('officialPhotos'))];
         const deputyHeadPrefects = parseTextToArray(formData.get('deputyHeadPrefects') as string);
         const seniorPrefectsList = parseTextToArray(formData.get('seniorPrefects') as string);
         const pastHeadPrefects = parseTextToArray(formData.get('pastHeadPrefects') as string);
@@ -149,7 +160,8 @@ export async function POST(req: NextRequest) {
         // Parse head prefect info
         const headPrefectDetails = (formData.get('headPrefectDetails') as string) || '';
 
-        result = await prisma.prefectsGuildForm.create({
+        result = await prisma.prefectsGuildForm.update({
+          where: { id },
           data: {
             userId,
             achievementPhotos,
@@ -179,12 +191,15 @@ export async function POST(req: NextRequest) {
 
       case 'academic':
       case 'academics': {
-        const logoUrl = await uploadSingleFile('logo');
-        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
-        const officialPhotos = await uploadFiles('officialPhotos');
+        let logoUrl = await uploadSingleFile('logo');
+        if (!logoUrl) logoUrl = formData.get('existing_logo') as string | null;
+        let groupPhotoUrl = await uploadSingleFile('groupPhoto');
+        if (!groupPhotoUrl) groupPhotoUrl = formData.get('existing_groupPhoto') as string | null;
+        const officialPhotos = [...(formData.getAll('existing_officialPhotos') as string[]), ...(await uploadFiles('officialPhotos'))];
         const notableAlumni = parseTextToArray(formData.get('notableAlumni') as string);
 
-        result = await prisma.academicAchievementForm.create({
+        result = await prisma.academicAchievementForm.update({
+          where: { id },
           data: {
             userId,
             achievementPhotos,
@@ -206,15 +221,19 @@ export async function POST(req: NextRequest) {
       }
 
       case 'houses': {
-        const logoUrl = await uploadSingleFile('logo');
-        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
-        const houseFlagUrl = await uploadSingleFile('houseFlag');
-        const actionPhotos = await uploadFiles('actionPhotos');
+        let logoUrl = await uploadSingleFile('logo');
+        if (!logoUrl) logoUrl = formData.get('existing_logo') as string | null;
+        let groupPhotoUrl = await uploadSingleFile('groupPhoto');
+        if (!groupPhotoUrl) groupPhotoUrl = formData.get('existing_groupPhoto') as string | null;
+        let houseFlagUrl = await uploadSingleFile('houseFlag');
+        if (!houseFlagUrl) houseFlagUrl = formData.get('existing_houseFlag') as string | null;
+        const actionPhotos = [...(formData.getAll('existing_actionPhotos') as string[]), ...(await uploadFiles('actionPhotos'))];
         const housePrefects = parseTextToArray(formData.get('housePrefects') as string);
         const notableAlumni = parseTextToArray(formData.get('notableAlumni') as string);
         const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
 
-        result = await prisma.houseForm.create({
+        result = await prisma.houseForm.update({
+          where: { id },
           data: {
             userId,
             achievementPhotos,
@@ -240,11 +259,14 @@ export async function POST(req: NextRequest) {
       }
 
       case 'associations': {
-        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
-        const logoUrl = await uploadSingleFile('logo');
+        let groupPhotoUrl = await uploadSingleFile('groupPhoto');
+        if (!groupPhotoUrl) groupPhotoUrl = formData.get('existing_groupPhoto') as string | null;
+        let logoUrl = await uploadSingleFile('logo');
+        if (!logoUrl) logoUrl = formData.get('existing_logo') as string | null;
         const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
 
-        result = await prisma.associationForm.create({
+        result = await prisma.associationForm.update({
+          where: { id },
           data: {
             userId,
             achievementPhotos,
@@ -264,13 +286,17 @@ export async function POST(req: NextRequest) {
       }
 
       case 'obu': {
-        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
+        let groupPhotoUrl = await uploadSingleFile('groupPhoto');
+        if (!groupPhotoUrl) groupPhotoUrl = formData.get('existing_groupPhoto') as string | null;
         let logoUrl = await uploadSingleFile('logo');
+        if (!logoUrl) logoUrl = formData.get('existing_logo') as string | null;
         if (!logoUrl) logoUrl = await uploadSingleFile('obuLogo');
+        if (!logoUrl) logoUrl = formData.get('existing_obuLogo') as string | null;
         const distinguishedAlumni = parseTextToArray(formData.get('distinguishedAlumni') as string);
         const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
 
-        result = await prisma.obuDataForm.create({
+        result = await prisma.obuDataForm.update({
+          where: { id },
           data: {
             userId,
             achievementPhotos,
@@ -291,12 +317,15 @@ export async function POST(req: NextRequest) {
       }
 
       case 'sports-wings': {
-        const logoUrl = await uploadSingleFile('logo');
-        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
-        const mediaUploads = await uploadFiles('mediaUploads');
+        let logoUrl = await uploadSingleFile('logo');
+        if (!logoUrl) logoUrl = formData.get('existing_logo') as string | null;
+        let groupPhotoUrl = await uploadSingleFile('groupPhoto');
+        if (!groupPhotoUrl) groupPhotoUrl = formData.get('existing_groupPhoto') as string | null;
+        const mediaUploads = [...(formData.getAll('existing_mediaUploads') as string[]), ...(await uploadFiles('mediaUploads'))];
         const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
 
-        result = await prisma.sportsWingForm.create({
+        result = await prisma.sportsWingForm.update({
+          where: { id },
           data: {
             userId,
             achievementPhotos,
@@ -320,13 +349,16 @@ export async function POST(req: NextRequest) {
       }
 
       case 'alumni-batches': {
-        const logoUrl = await uploadSingleFile('logo');
-        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
-        const mediaUploads = await uploadFiles('mediaUploads');
+        let logoUrl = await uploadSingleFile('logo');
+        if (!logoUrl) logoUrl = formData.get('existing_logo') as string | null;
+        let groupPhotoUrl = await uploadSingleFile('groupPhoto');
+        if (!groupPhotoUrl) groupPhotoUrl = formData.get('existing_groupPhoto') as string | null;
+        const mediaUploads = [...(formData.getAll('existing_mediaUploads') as string[]), ...(await uploadFiles('mediaUploads'))];
         const distinguishedAlumni = parseTextToArray(formData.get('distinguishedAlumni') as string);
         const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
 
-        result = await prisma.alumniBatchForm.create({
+        result = await prisma.alumniBatchForm.update({
+          where: { id },
           data: {
             userId,
             achievementPhotos,
@@ -348,11 +380,14 @@ export async function POST(req: NextRequest) {
       }
 
       case 'teachers-guild': {
-        const logoUrl = await uploadSingleFile('logo');
-        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
-        const mediaUploads = await uploadFiles('mediaUploads');
+        let logoUrl = await uploadSingleFile('logo');
+        if (!logoUrl) logoUrl = formData.get('existing_logo') as string | null;
+        let groupPhotoUrl = await uploadSingleFile('groupPhoto');
+        if (!groupPhotoUrl) groupPhotoUrl = formData.get('existing_groupPhoto') as string | null;
+        const mediaUploads = [...(formData.getAll('existing_mediaUploads') as string[]), ...(await uploadFiles('mediaUploads'))];
 
-        result = await prisma.teachersGuildForm.create({
+        result = await prisma.teachersGuildForm.update({
+          where: { id },
           data: {
             userId,
             achievementPhotos,
@@ -374,11 +409,14 @@ export async function POST(req: NextRequest) {
       }
 
       case 'welfare-society': {
-        const logoUrl = await uploadSingleFile('logo');
-        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
-        const mediaUploads = await uploadFiles('mediaUploads');
+        let logoUrl = await uploadSingleFile('logo');
+        if (!logoUrl) logoUrl = formData.get('existing_logo') as string | null;
+        let groupPhotoUrl = await uploadSingleFile('groupPhoto');
+        if (!groupPhotoUrl) groupPhotoUrl = formData.get('existing_groupPhoto') as string | null;
+        const mediaUploads = [...(formData.getAll('existing_mediaUploads') as string[]), ...(await uploadFiles('mediaUploads'))];
 
-        result = await prisma.welfareSocietyForm.create({
+        result = await prisma.welfareSocietyForm.update({
+          where: { id },
           data: {
             userId,
             achievementPhotos,
@@ -401,13 +439,16 @@ export async function POST(req: NextRequest) {
       }
 
       case 'choir': {
-        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
-        const logoUrl = await uploadSingleFile('logo');
-        const mediaUploads = await uploadFiles('mediaUploads');
+        let groupPhotoUrl = await uploadSingleFile('groupPhoto');
+        if (!groupPhotoUrl) groupPhotoUrl = formData.get('existing_groupPhoto') as string | null;
+        let logoUrl = await uploadSingleFile('logo');
+        if (!logoUrl) logoUrl = formData.get('existing_logo') as string | null;
+        const mediaUploads = [...(formData.getAll('existing_mediaUploads') as string[]), ...(await uploadFiles('mediaUploads'))];
         const leaders = parseTextToArray(formData.get('leaders') as string);
         const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
 
-        result = await prisma.choirForm.create({
+        result = await prisma.choirForm.update({
+          where: { id },
           data: {
             userId,
             achievementPhotos,
@@ -428,13 +469,16 @@ export async function POST(req: NextRequest) {
       }
 
       case 'band': {
-        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
-        const logoUrl = await uploadSingleFile('logo');
-        const mediaUploads = await uploadFiles('mediaUploads');
+        let groupPhotoUrl = await uploadSingleFile('groupPhoto');
+        if (!groupPhotoUrl) groupPhotoUrl = formData.get('existing_groupPhoto') as string | null;
+        let logoUrl = await uploadSingleFile('logo');
+        if (!logoUrl) logoUrl = formData.get('existing_logo') as string | null;
+        const mediaUploads = [...(formData.getAll('existing_mediaUploads') as string[]), ...(await uploadFiles('mediaUploads'))];
         const committee = parseTextToArray(formData.get('committee') as string);
         const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
 
-        result = await prisma.bandForm.create({
+        result = await prisma.bandForm.update({
+          where: { id },
           data: {
             userId,
             achievementPhotos,
@@ -456,13 +500,16 @@ export async function POST(req: NextRequest) {
       }
 
       case 'cadets': {
-        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
-        const logoUrl = await uploadSingleFile('logo');
-        const mediaUploads = await uploadFiles('mediaUploads');
+        let groupPhotoUrl = await uploadSingleFile('groupPhoto');
+        if (!groupPhotoUrl) groupPhotoUrl = formData.get('existing_groupPhoto') as string | null;
+        let logoUrl = await uploadSingleFile('logo');
+        if (!logoUrl) logoUrl = formData.get('existing_logo') as string | null;
+        const mediaUploads = [...(formData.getAll('existing_mediaUploads') as string[]), ...(await uploadFiles('mediaUploads'))];
         const corporals = parseTextToArray(formData.get('corporals') as string);
         const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
 
-        result = await prisma.cadetsForm.create({
+        result = await prisma.cadetsForm.update({
+          where: { id },
           data: {
             userId,
             achievementPhotos,
@@ -483,13 +530,16 @@ export async function POST(req: NextRequest) {
       }
 
       case 'scouts': {
-        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
-        const logoUrl = await uploadSingleFile('logo');
-        const mediaUploads = await uploadFiles('mediaUploads');
+        let groupPhotoUrl = await uploadSingleFile('groupPhoto');
+        if (!groupPhotoUrl) groupPhotoUrl = formData.get('existing_groupPhoto') as string | null;
+        let logoUrl = await uploadSingleFile('logo');
+        if (!logoUrl) logoUrl = formData.get('existing_logo') as string | null;
+        const mediaUploads = [...(formData.getAll('existing_mediaUploads') as string[]), ...(await uploadFiles('mediaUploads'))];
         const patrolLeaders = parseTextToArray(formData.get('patrolLeaders') as string);
         const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
 
-        result = await prisma.scoutsForm.create({
+        result = await prisma.scoutsForm.update({
+          where: { id },
           data: {
             userId,
             achievementPhotos,
@@ -511,13 +561,16 @@ export async function POST(req: NextRequest) {
       }
 
       case 'orchestra': {
-        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
-        const logoUrl = await uploadSingleFile('logo');
-        const mediaUploads = await uploadFiles('mediaUploads');
+        let groupPhotoUrl = await uploadSingleFile('groupPhoto');
+        if (!groupPhotoUrl) groupPhotoUrl = formData.get('existing_groupPhoto') as string | null;
+        let logoUrl = await uploadSingleFile('logo');
+        if (!logoUrl) logoUrl = formData.get('existing_logo') as string | null;
+        const mediaUploads = [...(formData.getAll('existing_mediaUploads') as string[]), ...(await uploadFiles('mediaUploads'))];
         const committee = parseTextToArray(formData.get('committee') as string);
         const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
 
-        result = await prisma.orchestraForm.create({
+        result = await prisma.orchestraForm.update({
+          where: { id },
           data: {
             userId,
             achievementPhotos,
@@ -538,14 +591,17 @@ export async function POST(req: NextRequest) {
       }
 
       case 'bens-wesley-committee': {
-        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
-        const logoUrl = await uploadSingleFile('logo');
-        const mediaUploads = await uploadFiles('mediaUploads');
+        let groupPhotoUrl = await uploadSingleFile('groupPhoto');
+        if (!groupPhotoUrl) groupPhotoUrl = formData.get('existing_groupPhoto') as string | null;
+        let logoUrl = await uploadSingleFile('logo');
+        if (!logoUrl) logoUrl = formData.get('existing_logo') as string | null;
+        const mediaUploads = [...(formData.getAll('existing_mediaUploads') as string[]), ...(await uploadFiles('mediaUploads'))];
         const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
 
         const pastChairmen = parseTextToArray(formData.get('pastChairmen') as string);
 
-        result = await prisma.bensWesleyCommitteeForm.create({
+        result = await prisma.bensWesleyCommitteeForm.update({
+          where: { id },
           data: {
             userId,
             achievementPhotos,

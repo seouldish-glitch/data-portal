@@ -99,7 +99,12 @@ export default function Home() {
       id: 16,
       title: "Orchestra",
       description: "Information regarding the orchestra, leaders, and performances.",
-      slug: "orchestra",
+    },
+    {
+      id: 17,
+      title: "Bens-Wesley Committee",
+      description: "Information regarding the Bens-Wesley committee, leaders, and major events.",
+      slug: "bens-wesley-committee",
     }
   ];
 
