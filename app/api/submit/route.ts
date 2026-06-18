@@ -240,7 +240,6 @@ export async function POST(req: NextRequest) {
             upcomingEvents: formData.get('upcomingEvents') as string,
             logoUrl,
             socialMediaLinks,
-            logoUrl,
             groupPhotoUrl,
           },
         });
@@ -266,7 +265,6 @@ export async function POST(req: NextRequest) {
             distinguishedAlumni,
             logoUrl,
             socialMediaLinks,
-            logoUrl,
             groupPhotoUrl,
           },
         });
