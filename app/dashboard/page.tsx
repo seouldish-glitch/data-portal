@@ -20,6 +20,7 @@ const CATEGORIES = [
   { slug: 'band', name: 'Band' },
   { slug: 'cadets', name: 'Cadets' },
   { slug: 'scouts', name: 'Scouts' },
+  { slug: 'orchestra', name: 'Orchestra' },
 ];
 
 export default function DashboardPage() {
@@ -125,6 +126,7 @@ export default function DashboardPage() {
       case 'band': return sub.bandCategory || 'Band';
       case 'cadets': return sub.platoonName || 'Unnamed Platoon';
       case 'scouts': return sub.troopName || 'Unnamed Troop';
+      case 'orchestra': return sub.orchestraCategory || 'Orchestra';
       default: return 'Submission Detail';
     }
   };

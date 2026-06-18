@@ -98,7 +98,7 @@ export const FORMS_CONFIG: Record<string, FormConfig> = {
     title: 'Academic Achievements Form',
     subtitle: '(To be filled by Sectional Heads - Primary, O/L, A/L Science, Commerce, Arts, Tech)',
     fields: [
-      { name: 'academicStream', label: '1. Academic Section / Stream', type: 'select', options: ['Primary', 'Science', 'Mathematics', 'Commerce', 'Arts', 'Tech'], required: true },
+      { name: 'academicStream', label: '1. Academic Section / Stream', type: 'select', options: ['Primary', 'Science', 'Mathematics', 'Commerce', 'Arts', 'Tech', 'Edexcel - International Advanced Level', 'IGCSE'], required: true },
       { name: 'sectionalHeadName', label: '2. Name of the Sectional Head', type: 'text', required: true },
       { name: 'totalStudents', label: '3. Total Number of Students in the Section', type: 'number', required: true },
       { name: 'topPerformingClass', label: '4. Top Performing Stream/Class', type: 'text', required: false },
@@ -313,6 +313,24 @@ export const FORMS_CONFIG: Record<string, FormConfig> = {
       { name: 'logo', label: '10. Official Logo (PNG format)', type: 'file', accept: '.png', required: false },
       { name: 'groupPhoto', label: '11. Official Group Photo', type: 'file', accept: 'image/*', required: false },
       { name: 'mediaUploads', label: '12. Official Media Uploads (Camp Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
+    ]
+  },
+  orchestra: {
+    title: 'Orchestra Data Collection Form',
+    subtitle: '(To be filled by the Master-in-Charge or Conductor)',
+    fields: [
+      { name: 'orchestraCategory', label: '1. Orchestra Category', type: 'select', options: ['Symphony Orchestra', 'String Orchestra', 'Wind Orchestra', 'Primary Orchestra'], required: true },
+      { name: 'micName', label: '2. Name of the Master-in-Charge (MIC)', type: 'text', required: true },
+      { name: 'conductorName', label: '3. Name of the Conductor', type: 'text', required: true },
+      { name: 'leaderName', label: '4. Name of the Orchestra Leader', type: 'text', required: true },
+      { name: 'committee', label: '5. Names of other Committee Members', type: 'textarea', required: false },
+      { name: 'membersCount', label: '6. Total Number of Members', type: 'number', required: true },
+      { name: 'achievements', label: '7. Recent Achievements and Awards', type: 'textarea', required: false },
+      { name: 'events', label: '8. Major Annual Events / Performances', type: 'textarea', required: false },
+      { name: 'socialLinks', label: '9. Official Social Media / Group Links', type: 'textarea', required: false },
+      { name: 'logo', label: '10. Official Logo (PNG format)', type: 'file', accept: '.png', required: false },
+      { name: 'groupPhoto', label: '11. Official Group Photo', type: 'file', accept: 'image/*', required: false },
+      { name: 'mediaUploads', label: '12. Official Media Uploads (Event Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
     ]
   }
 };

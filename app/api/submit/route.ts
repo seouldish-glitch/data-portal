@@ -475,6 +475,32 @@ export async function POST(req: NextRequest) {
         break;
       }
 
+      case 'orchestra': {
+        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
+        const logoUrl = await uploadSingleFile('logo');
+        const mediaUploads = await uploadFiles('mediaUploads');
+        const committee = parseTextToArray(formData.get('committee') as string);
+        const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
+
+        result = await prisma.orchestraForm.create({
+          data: {
+            orchestraCategory: (formData.get('orchestraCategory') as string) || '',
+            micName: (formData.get('micName') as string) || '',
+            conductorName: (formData.get('conductorName') as string) || '',
+            leaderName: (formData.get('leaderName') as string) || '',
+            committee,
+            membersCount: parseIntSafe(formData.get('membersCount') as string),
+            achievements: (formData.get('achievements') as string) || '',
+            events: (formData.get('events') as string) || '',
+            socialMediaLinks,
+            mediaUploads,
+            logoUrl,
+            groupPhotoUrl,
+          },
+        });
+        break;
+      }
+
       default:
         return NextResponse.json({ error: `Category '${category}' is not supported` }, { status: 400 });
     }

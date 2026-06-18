@@ -96,6 +96,11 @@ export async function GET(req: NextRequest) {
           orderBy: { createdAt: 'desc' },
         });
         break;
+      case 'orchestra':
+        submissions = await prisma.orchestraForm.findMany({
+          orderBy: { createdAt: 'desc' },
+        });
+        break;
       default:
         return NextResponse.json({ error: `Category '${category}' is not supported` }, { status: 400 });
     }

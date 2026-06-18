@@ -94,6 +94,12 @@ export default function Home() {
       title: "Scouts",
       description: "Information regarding the scout troop, leaders, and jamboree/camp details.",
       slug: "scouts",
+    },
+    {
+      id: 16,
+      title: "Orchestra",
+      description: "Information regarding the orchestra, leaders, and performances.",
+      slug: "orchestra",
     }
   ];
 
