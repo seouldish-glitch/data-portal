@@ -126,7 +126,7 @@ export default function DashboardPage() {
       case 'band': return sub.bandCategory || 'Band';
       case 'cadets': return sub.platoonName || 'Unnamed Platoon';
       case 'scouts': return sub.troopName || 'Unnamed Troop';
-      case 'orchestra': return sub.orchestraCategory || 'Orchestra';
+      case 'orchestra': return 'Orchestra';
       default: return 'Submission Detail';
     }
   };

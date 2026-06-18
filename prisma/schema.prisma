@@ -316,7 +316,6 @@ model ScoutsForm {
 
 model OrchestraForm {
   id               String   @id @default(auto()) @map("_id") @db.ObjectId
-  orchestraCategory String
   micName          String
   conductorName    String
   leaderName       String

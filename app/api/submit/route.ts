@@ -484,7 +484,6 @@ export async function POST(req: NextRequest) {
 
         result = await prisma.orchestraForm.create({
           data: {
-            orchestraCategory: (formData.get('orchestraCategory') as string) || '',
             micName: (formData.get('micName') as string) || '',
             conductorName: (formData.get('conductorName') as string) || '',
             leaderName: (formData.get('leaderName') as string) || '',
