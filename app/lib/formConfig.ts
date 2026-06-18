@@ -223,5 +223,67 @@ export const FORMS_CONFIG: Record<string, FormConfig> = {
       { name: 'contributions', label: '10. Major Contributions / Support provided to the Staff or College', type: 'textarea', required: false },
       { name: 'mediaUploads', label: '11. Official Media Uploads (Executive Board Photo, Top Event Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
     ]
+  },
+  choir: {
+    title: 'Choir Data Collection Form',
+    subtitle: '(To be filled by the Master-in-Charge or Choir Master)',
+    fields: [
+      { name: 'subCategory', label: '1. Choir Category', type: 'select', options: ['Primary Choir', 'Senior Choir'], required: true },
+      { name: 'micName', label: '2. Name of the Master-in-Charge (MIC)', type: 'text', required: true },
+      { name: 'choirMaster', label: '3. Name of the Choir Master / Director', type: 'text', required: true },
+      { name: 'leaders', label: '4. Names of Choir Leaders / Committee', type: 'textarea', required: false },
+      { name: 'membersCount', label: '5. Total Number of Members', type: 'number', required: true },
+      { name: 'achievements', label: '6. Recent Achievements and Awards', type: 'textarea', required: false },
+      { name: 'events', label: '7. Major Annual Events / Performances', type: 'textarea', required: false },
+      { name: 'socialLinks', label: '8. Official Social Media / Group Links', type: 'textarea', required: false },
+      { name: 'mediaUploads', label: '9. Official Media Uploads (Choir Logo, Group Photo, Event Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
+    ]
+  },
+  band: {
+    title: 'Band Data Collection Form',
+    subtitle: '(To be filled by the Master-in-Charge or Band Master)',
+    fields: [
+      { name: 'bandCategory', label: '1. Band Category', type: 'select', options: ['Western Band', 'Eastern Band', 'Primary Western Band', 'Primary Eastern Band'], required: true },
+      { name: 'micName', label: '2. Name of the Master-in-Charge (MIC)', type: 'text', required: true },
+      { name: 'bandMaster', label: '3. Name of the Band Master / Instructor', type: 'text', required: true },
+      { name: 'bandLeader', label: '4. Name of the Band Leader / Sergeant', type: 'text', required: true },
+      { name: 'committee', label: '5. Names of other Committee Members', type: 'textarea', required: false },
+      { name: 'membersCount', label: '6. Total Number of Members', type: 'number', required: true },
+      { name: 'achievements', label: '7. Recent Achievements and Awards', type: 'textarea', required: false },
+      { name: 'events', label: '8. Major Annual Events / Performances', type: 'textarea', required: false },
+      { name: 'socialLinks', label: '9. Official Social Media / Group Links', type: 'textarea', required: false },
+      { name: 'mediaUploads', label: '10. Official Media Uploads (Band Logo, Group Photo, Event Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
+    ]
+  },
+  cadets: {
+    title: 'Cadets Platoon Data Collection Form',
+    subtitle: '(To be filled by the Officer-in-Charge)',
+    fields: [
+      { name: 'platoonName', label: '1. Name of the Platoon', type: 'text', required: true },
+      { name: 'oicName', label: '2. Name of the Officer-in-Charge (OIC)', type: 'text', required: true },
+      { name: 'sergeantName', label: '3. Name of the Sergeant', type: 'text', required: true },
+      { name: 'corporals', label: '4. Names of Corporals / Other NCOs', type: 'textarea', required: false },
+      { name: 'membersCount', label: '5. Total Number of Cadets', type: 'number', required: true },
+      { name: 'camps', label: '6. Annual Camps Attended', type: 'textarea', required: false },
+      { name: 'achievements', label: '7. Recent Achievements and Awards', type: 'textarea', required: false },
+      { name: 'socialLinks', label: '8. Official Social Media / Group Links', type: 'textarea', required: false },
+      { name: 'mediaUploads', label: '9. Official Media Uploads (Platoon Logo, Group Photo, Camp Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
+    ]
+  },
+  scouts: {
+    title: 'Scouts Troop Data Collection Form',
+    subtitle: '(To be filled by the Group Scout Leader or Master-in-Charge)',
+    fields: [
+      { name: 'troopName', label: '1. Name of the Scout Troop', type: 'text', required: true },
+      { name: 'micName', label: '2. Name of the Master-in-Charge (MIC)', type: 'text', required: true },
+      { name: 'gslName', label: '3. Name of the Group Scout Leader (GSL)', type: 'text', required: true },
+      { name: 'troopLeader', label: '4. Name of the Troop Leader', type: 'text', required: true },
+      { name: 'patrolLeaders', label: '5. Names of Patrol Leaders', type: 'textarea', required: false },
+      { name: 'membersCount', label: '6. Total Number of Scouts', type: 'number', required: true },
+      { name: 'camps', label: '7. Annual Jamborees / Camps Attended', type: 'textarea', required: false },
+      { name: 'achievements', label: '8. Recent Achievements and Awards', type: 'textarea', required: false },
+      { name: 'socialLinks', label: '9. Official Social Media / Group Links', type: 'textarea', required: false },
+      { name: 'mediaUploads', label: '10. Official Media Uploads (Troop Logo, Group Photo, Camp Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
+    ]
   }
 };

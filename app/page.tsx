@@ -70,6 +70,30 @@ export default function Home() {
       title: "Welfare Society",
       description: "Information regarding the welfare society, events, and staff support.",
       slug: "welfare-society",
+    },
+    {
+      id: 12,
+      title: "Choir",
+      description: "Information regarding the choir, sub-categories, events, and performances.",
+      slug: "choir",
+    },
+    {
+      id: 13,
+      title: "Band",
+      description: "Information regarding the bands (Western, Eastern, Primary), members, and events.",
+      slug: "band",
+    },
+    {
+      id: 14,
+      title: "Cadets",
+      description: "Information regarding the cadet platoon, OIC, leaders, and camp participations.",
+      slug: "cadets",
+    },
+    {
+      id: 15,
+      title: "Scouts",
+      description: "Information regarding the scout troop, leaders, and jamboree/camp details.",
+      slug: "scouts",
     }
   ];
 
