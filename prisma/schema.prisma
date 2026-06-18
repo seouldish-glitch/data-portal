@@ -235,6 +235,7 @@ model ChoirForm {
   events           String?
   socialMediaLinks String[]
   mediaUploads     String[]
+  logoUrl          String?
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 }
@@ -251,6 +252,7 @@ model BandForm {
   events           String?
   socialMediaLinks String[]
   mediaUploads     String[]
+  logoUrl          String?
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 }
@@ -266,6 +268,7 @@ model CadetsForm {
   achievements     String?
   socialMediaLinks String[]
   mediaUploads     String[]
+  logoUrl          String?
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 }
@@ -282,6 +285,7 @@ model ScoutsForm {
   achievements     String?
   socialMediaLinks String[]
   mediaUploads     String[]
+  logoUrl          String?
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 }

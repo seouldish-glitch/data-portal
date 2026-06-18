@@ -236,7 +236,8 @@ export const FORMS_CONFIG: Record<string, FormConfig> = {
       { name: 'achievements', label: '6. Recent Achievements and Awards', type: 'textarea', required: false },
       { name: 'events', label: '7. Major Annual Events / Performances', type: 'textarea', required: false },
       { name: 'socialLinks', label: '8. Official Social Media / Group Links', type: 'textarea', required: false },
-      { name: 'mediaUploads', label: '9. Official Media Uploads (Choir Logo, Group Photo, Event Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
+      { name: 'logo', label: '9. Official Logo (PNG format)', type: 'file', accept: '.png', required: false },
+      { name: 'mediaUploads', label: '10. Official Media Uploads (Group Photo, Event Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
     ]
   },
   band: {
@@ -252,7 +253,8 @@ export const FORMS_CONFIG: Record<string, FormConfig> = {
       { name: 'achievements', label: '7. Recent Achievements and Awards', type: 'textarea', required: false },
       { name: 'events', label: '8. Major Annual Events / Performances', type: 'textarea', required: false },
       { name: 'socialLinks', label: '9. Official Social Media / Group Links', type: 'textarea', required: false },
-      { name: 'mediaUploads', label: '10. Official Media Uploads (Band Logo, Group Photo, Event Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
+      { name: 'logo', label: '10. Official Logo (PNG format)', type: 'file', accept: '.png', required: false },
+      { name: 'mediaUploads', label: '11. Official Media Uploads (Group Photo, Event Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
     ]
   },
   cadets: {
@@ -267,7 +269,8 @@ export const FORMS_CONFIG: Record<string, FormConfig> = {
       { name: 'camps', label: '6. Annual Camps Attended', type: 'textarea', required: false },
       { name: 'achievements', label: '7. Recent Achievements and Awards', type: 'textarea', required: false },
       { name: 'socialLinks', label: '8. Official Social Media / Group Links', type: 'textarea', required: false },
-      { name: 'mediaUploads', label: '9. Official Media Uploads (Platoon Logo, Group Photo, Camp Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
+      { name: 'logo', label: '9. Official Logo (PNG format)', type: 'file', accept: '.png', required: false },
+      { name: 'mediaUploads', label: '10. Official Media Uploads (Group Photo, Camp Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
     ]
   },
   scouts: {
@@ -283,7 +286,8 @@ export const FORMS_CONFIG: Record<string, FormConfig> = {
       { name: 'camps', label: '7. Annual Jamborees / Camps Attended', type: 'textarea', required: false },
       { name: 'achievements', label: '8. Recent Achievements and Awards', type: 'textarea', required: false },
       { name: 'socialLinks', label: '9. Official Social Media / Group Links', type: 'textarea', required: false },
-      { name: 'mediaUploads', label: '10. Official Media Uploads (Troop Logo, Group Photo, Camp Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
+      { name: 'logo', label: '10. Official Logo (PNG format)', type: 'file', accept: '.png', required: false },
+      { name: 'mediaUploads', label: '11. Official Media Uploads (Group Photo, Camp Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
     ]
   }
 };

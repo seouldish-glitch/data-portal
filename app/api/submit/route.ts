@@ -333,6 +333,7 @@ export async function POST(req: NextRequest) {
       }
 
       case 'choir': {
+        const logoUrl = await uploadSingleFile('logo');
         const mediaUploads = await uploadFiles('mediaUploads');
         const leaders = parseTextToArray(formData.get('leaders') as string);
         const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
@@ -348,12 +349,14 @@ export async function POST(req: NextRequest) {
             events: (formData.get('events') as string) || '',
             socialMediaLinks,
             mediaUploads,
+            logoUrl,
           },
         });
         break;
       }
 
       case 'band': {
+        const logoUrl = await uploadSingleFile('logo');
         const mediaUploads = await uploadFiles('mediaUploads');
         const committee = parseTextToArray(formData.get('committee') as string);
         const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
@@ -370,12 +373,14 @@ export async function POST(req: NextRequest) {
             events: (formData.get('events') as string) || '',
             socialMediaLinks,
             mediaUploads,
+            logoUrl,
           },
         });
         break;
       }
 
       case 'cadets': {
+        const logoUrl = await uploadSingleFile('logo');
         const mediaUploads = await uploadFiles('mediaUploads');
         const corporals = parseTextToArray(formData.get('corporals') as string);
         const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
@@ -391,12 +396,14 @@ export async function POST(req: NextRequest) {
             achievements: (formData.get('achievements') as string) || '',
             socialMediaLinks,
             mediaUploads,
+            logoUrl,
           },
         });
         break;
       }
 
       case 'scouts': {
+        const logoUrl = await uploadSingleFile('logo');
         const mediaUploads = await uploadFiles('mediaUploads');
         const patrolLeaders = parseTextToArray(formData.get('patrolLeaders') as string);
         const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
@@ -413,6 +420,7 @@ export async function POST(req: NextRequest) {
             achievements: (formData.get('achievements') as string) || '',
             socialMediaLinks,
             mediaUploads,
+            logoUrl,
           },
         });
         break;
