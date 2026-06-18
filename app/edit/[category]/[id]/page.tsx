@@ -208,7 +208,7 @@ export default function EditPage({ params }: { params: { category: string, id: s
               {field.type === 'select' && field.options && (
                 <select
                   name={field.name}
-                  required={field.type === 'file' ? false : field.required}
+                  required={field.required}
                   className="form-input-control"
                   defaultValue={getDefVal(field.name)}
                 >
@@ -256,7 +256,7 @@ export default function EditPage({ params }: { params: { category: string, id: s
                 <input
                   type={field.type}
                   name={field.name}
-                  required={field.type === 'file' ? false : field.required}
+                  required={field.required}
                   placeholder={`Type response here...`}
                   defaultValue={getDefVal(field.name)}
                   className="form-input-control"
