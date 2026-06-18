@@ -6,7 +6,7 @@ import Link from 'next/link';
 import LoadingScreen from '../components/LoadingScreen';
 export const dynamic = 'force-dynamic';
 
-export default function LoginPage() {
+function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -51,7 +51,7 @@ export default function LoginPage() {
     }
   };
 
-  return (<Suspense fallback={<LoadingScreen />}>
+  return (
     <div className="page-wrapper" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#000000' }}>
       
       <div style={{
@@ -165,5 +165,13 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
-  </Suspense>);
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<LoadingScreen />}>
+      <LoginForm />
+    </Suspense>
+  );
 }
