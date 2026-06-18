@@ -16,6 +16,10 @@ const CATEGORIES = [
   { slug: 'alumni-batches', name: 'Alumni Batches' },
   { slug: 'teachers-guild', name: "Teachers' Guild" },
   { slug: 'welfare-society', name: 'Welfare Society' },
+  { slug: 'choir', name: 'Choir' },
+  { slug: 'band', name: 'Band' },
+  { slug: 'cadets', name: 'Cadets' },
+  { slug: 'scouts', name: 'Scouts' },
 ];
 
 export default function DashboardPage() {
@@ -117,6 +121,10 @@ export default function DashboardPage() {
       case 'alumni-batches': return `Batch of ${sub.batchYear}`;
       case 'teachers-guild': return sub.guildName || "Teachers' Guild";
       case 'welfare-society': return sub.societyName || 'Welfare Society';
+      case 'choir': return sub.subCategory || 'Choir';
+      case 'band': return sub.bandCategory || 'Band';
+      case 'cadets': return sub.platoonName || 'Unnamed Platoon';
+      case 'scouts': return sub.troopName || 'Unnamed Troop';
       default: return 'Submission Detail';
     }
   };

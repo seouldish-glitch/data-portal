@@ -76,6 +76,26 @@ export async function GET(req: NextRequest) {
           orderBy: { createdAt: 'desc' },
         });
         break;
+      case 'choir':
+        submissions = await prisma.choirForm.findMany({
+          orderBy: { createdAt: 'desc' },
+        });
+        break;
+      case 'band':
+        submissions = await prisma.bandForm.findMany({
+          orderBy: { createdAt: 'desc' },
+        });
+        break;
+      case 'cadets':
+        submissions = await prisma.cadetsForm.findMany({
+          orderBy: { createdAt: 'desc' },
+        });
+        break;
+      case 'scouts':
+        submissions = await prisma.scoutsForm.findMany({
+          orderBy: { createdAt: 'desc' },
+        });
+        break;
       default:
         return NextResponse.json({ error: `Category '${category}' is not supported` }, { status: 400 });
     }
