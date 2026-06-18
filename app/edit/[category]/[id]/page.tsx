@@ -197,7 +197,7 @@ export default function EditPage({ params }: { params: { category: string, id: s
               {field.type === 'textarea' && (
                 <textarea
                   name={field.name}
-                  required={field.type === 'file' ? false : field.required}
+                  required={field.required}
                   rows={4}
                   placeholder={`Enter details...`}
                   defaultValue={getDefVal(field.name)}
