@@ -3,7 +3,7 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import LoadingScreen from '@/app/components/LoadingScreen';
+import LoadingScreen from '../components/LoadingScreen';
 export const dynamic = 'force-dynamic';
 
 export default function LoginPage() {
