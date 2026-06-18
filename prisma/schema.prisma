@@ -30,6 +30,8 @@ model SportForm {
   annualEncounters          String
   nationalCaps              String[]
   mediaLinks                String[] // URLs for logos, photos, socials
+  logoUrl                   String?
+  groupPhotoUrl             String?
   createdAt                 DateTime @default(now())
   updatedAt                 DateTime @updatedAt
 }
@@ -57,6 +59,8 @@ model ClubSocietyForm {
   notableAlumni             String[]
   socialMediaLinks          String[]
   mediaUploads              String[] // URLs to PNGs, photos
+  logoUrl                   String?
+  groupPhotoUrl             String?
   createdAt                 DateTime @default(now())
   updatedAt                 DateTime @updatedAt
 }
@@ -80,6 +84,8 @@ model PrefectsGuildForm {
   badgeLogoUrl            String?
   officialPhotos          String[]
   socialMediaLinks        String[]
+  logoUrl                 String?
+  groupPhotoUrl           String?
   createdAt               DateTime @default(now())
   updatedAt               DateTime @updatedAt
 }
@@ -96,6 +102,8 @@ model AcademicAchievementForm {
   subjectHighlights  String
   notableAlumni      String[]
   officialPhotos     String[]
+  logoUrl            String?
+  groupPhotoUrl      String?
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
 }
@@ -122,6 +130,8 @@ model HouseForm {
   primaryAwards            String? // Primary only
   primaryContact           String? // Primary only
   socialMediaLinks         String[]
+  logoUrl                  String?
+  groupPhotoUrl            String?
   createdAt                DateTime @default(now())
   updatedAt                DateTime @updatedAt
 }
@@ -138,6 +148,7 @@ model ObuDataForm {
   distinguishedAlumni    String[]
   logoUrl                String?
   socialMediaLinks       String[]
+  groupPhotoUrl          String?
   createdAt              DateTime @default(now())
   updatedAt              DateTime @updatedAt
 }
@@ -153,6 +164,7 @@ model AssociationForm {
   upcomingEvents    String?
   logoUrl           String?
   socialMediaLinks  String[]
+  groupPhotoUrl     String?
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 }
@@ -171,6 +183,8 @@ model SportsWingForm {
   majorEvents        String?
   socialMediaLinks   String[]
   mediaUploads       String[]
+  logoUrl            String?
+  groupPhotoUrl      String?
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
 }
@@ -187,6 +201,8 @@ model AlumniBatchForm {
   distinguishedAlumni String[]
   socialMediaLinks    String[]
   mediaUploads        String[]
+  logoUrl             String?
+  groupPhotoUrl       String?
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
 }
@@ -203,6 +219,8 @@ model TeachersGuildForm {
   majorEvents      String?
   contributions    String?
   mediaUploads     String[]
+  logoUrl          String?
+  groupPhotoUrl    String?
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 }
@@ -220,6 +238,8 @@ model WelfareSocietyForm {
   annualEvents      String?
   contributions     String?
   mediaUploads      String[]
+  logoUrl           String?
+  groupPhotoUrl     String?
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 }
@@ -236,6 +256,7 @@ model ChoirForm {
   socialMediaLinks String[]
   mediaUploads     String[]
   logoUrl          String?
+  groupPhotoUrl    String?
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 }
@@ -253,6 +274,7 @@ model BandForm {
   socialMediaLinks String[]
   mediaUploads     String[]
   logoUrl          String?
+  groupPhotoUrl    String?
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 }
@@ -269,6 +291,7 @@ model CadetsForm {
   socialMediaLinks String[]
   mediaUploads     String[]
   logoUrl          String?
+  groupPhotoUrl    String?
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 }
@@ -286,6 +309,7 @@ model ScoutsForm {
   socialMediaLinks String[]
   mediaUploads     String[]
   logoUrl          String?
+  groupPhotoUrl    String?
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 }

@@ -37,7 +37,9 @@ export const FORMS_CONFIG: Record<string, FormConfig> = {
       { name: 'provincialAchievements', label: '17. Provincial / Zonal / Divisional Level Achievements', type: 'textarea', required: false },
       { name: 'traditionalEncounters', label: '18. Annual Traditional Encounters / Big Matches (Details & Current Title Status)', type: 'textarea', required: false },
       { name: 'nationalCaps', label: '19. National Caps / Wall of Fame (Names of players who have represented the Sri Lanka National Team)', type: 'textarea', required: false },
-      { name: 'mediaUploads', label: '20. Official Media Uploads & Links (Team Logo, Group Photo, 3 Action Photos, Official Social Media Links)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
+      { name: 'logo', label: '20. Official Logo (PNG format)', type: 'file', accept: '.png', required: false },
+      { name: 'groupPhoto', label: '21. Official Group Photo', type: 'file', accept: 'image/*', required: false },
+      { name: 'mediaUploads', label: '22. Official Media Uploads & Links (3 Action Photos, Official Social Media Links)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
     ]
   },
   clubs: {
@@ -63,7 +65,9 @@ export const FORMS_CONFIG: Record<string, FormConfig> = {
       { name: 'provincialAchievements', label: '17. Zonal / Provincial Level Achievements', type: 'textarea', required: false },
       { name: 'notableAlumni', label: '18. Notable Alumni / Wall of Fame (Past members currently in prominent societal positions)', type: 'textarea', required: false },
       { name: 'socialLinks', label: '19. Official Social Media / Website Links', type: 'textarea', required: false },
-      { name: 'mediaUploads', label: '20. Official Media Uploads (Official Logo PNG, Current Executive Board Group Photo, Top 3 Project Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
+      { name: 'logo', label: '20. Official Logo (PNG format)', type: 'file', accept: '.png', required: false },
+      { name: 'groupPhoto', label: '21. Official Group Photo', type: 'file', accept: 'image/*', required: false },
+      { name: 'mediaUploads', label: '22. Official Media Uploads (Top 3 Project Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
     ]
   },
   prefects: {
@@ -84,8 +88,10 @@ export const FORMS_CONFIG: Record<string, FormConfig> = {
       { name: 'majorEvents', label: '12. Major Annual Events', type: 'textarea', required: false },
       { name: 'coreDuties', label: '13. Core Duties & Mission', type: 'textarea', required: true },
       { name: 'guildLogo', label: '14. Board Badge/Logo (PNG format)', type: 'file', accept: '.png', required: false },
-      { name: 'officialPhotos', label: '15. Official Photos (Top Board Photo, Full Group Photo)', type: 'file', accept: 'image/*, .zip, .rar', required: false },
-      { name: 'socialLinks', label: '16. Official Social Media Links', type: 'textarea', required: false }
+      { name: 'logo', label: '15. Official Logo (PNG format)', type: 'file', accept: '.png', required: false },
+      { name: 'groupPhoto', label: '16. Official Group Photo', type: 'file', accept: 'image/*', required: false },
+      { name: 'officialPhotos', label: '17. Official Photos (Top Board Photo)', type: 'file', accept: 'image/*, .zip, .rar', required: false },
+      { name: 'socialLinks', label: '18. Official Social Media Links', type: 'textarea', required: false }
     ]
   },
   academics: {
@@ -101,7 +107,9 @@ export const FORMS_CONFIG: Record<string, FormConfig> = {
       { name: 'academicMilestones', label: '7. Notable Academic Milestones/Awards', type: 'textarea', required: false },
       { name: 'subjectHighlights', label: '8. Subject-wise Highlights', type: 'textarea', required: false },
       { name: 'notableAlumni', label: '9. Notable Alumni', type: 'textarea', required: false },
-      { name: 'officialPhotos', label: '10. Official Photos', type: 'file', accept: 'image/*, .zip, .rar', required: false }
+      { name: 'logo', label: '10. Official Logo (PNG format)', type: 'file', accept: '.png', required: false },
+      { name: 'groupPhoto', label: '11. Official Group Photo', type: 'file', accept: 'image/*', required: false },
+      { name: 'officialPhotos', label: '12. Official Photos', type: 'file', accept: 'image/*, .zip, .rar', required: false }
     ]
   },
   houses: {
@@ -123,7 +131,9 @@ export const FORMS_CONFIG: Record<string, FormConfig> = {
       { name: 'notableAlumni', label: '13. Notable House Alumni (Wall of Fame)', type: 'textarea', required: false },
       { name: 'challengeShields', label: '14. Special Challenge Shields / Awards Won', type: 'textarea', required: false },
       { name: 'houseCheer', label: '15. House Cheer / Anthem', type: 'textarea', required: false },
-      { name: 'socialLinks', label: '16. Official Social Media / Group Links', type: 'textarea', required: false }
+      { name: 'socialLinks', label: '16. Official Social Media / Group Links', type: 'textarea', required: false },
+      { name: 'logo', label: '17. Official Logo (PNG format)', type: 'file', accept: '.png', required: false },
+      { name: 'groupPhoto', label: '18. Official Group Photo', type: 'file', accept: 'image/*', required: false }
     ]
   },
   associations: {
@@ -138,7 +148,8 @@ export const FORMS_CONFIG: Record<string, FormConfig> = {
       { name: 'keyContributions', label: '6. Key Contributions to the College', type: 'textarea', required: true },
       { name: 'upcomingEvents', label: '7. Upcoming Events / Projects', type: 'textarea', required: false },
       { name: 'logo', label: '8. Official Logo (PNG format)', type: 'file', accept: '.png', required: false },
-      { name: 'socialLinks', label: '9. Official Social Media / Website Links', type: 'textarea', required: false }
+      { name: 'groupPhoto', label: '9. Official Group Photo', type: 'file', accept: 'image/*', required: false },
+      { name: 'socialLinks', label: '10. Official Social Media / Website Links', type: 'textarea', required: false }
     ]
   },
   obu: {
@@ -154,7 +165,9 @@ export const FORMS_CONFIG: Record<string, FormConfig> = {
       { name: 'upcomingEvents', label: '7. Upcoming Anniversary Events (Global 161st celebration events)', type: 'textarea', required: false },
       { name: 'distinguishedAlumni', label: '8. Distinguished Alumni Highlights', type: 'textarea', required: false },
       { name: 'obuLogo', label: '9. Official OBU Logo (PNG format)', type: 'file', accept: '.png', required: false },
-      { name: 'socialLinks', label: '10. Official Social Media / Website Links', type: 'textarea', required: false }
+      { name: 'logo', label: '10. Official Logo (PNG format)', type: 'file', accept: '.png', required: false },
+      { name: 'groupPhoto', label: '11. Official Group Photo', type: 'file', accept: 'image/*', required: false },
+      { name: 'socialLinks', label: '12. Official Social Media / Website Links', type: 'textarea', required: false }
     ]
   },
   'sports-wings': {
@@ -172,7 +185,9 @@ export const FORMS_CONFIG: Record<string, FormConfig> = {
       { name: 'keyContributions', label: '9. Key Contributions / Support Provided (e.g., Sponsoring coaches, funding sports gear, building pavilions/nets)', type: 'textarea', required: true },
       { name: 'majorEvents', label: '10. Major Annual Events / Fundraisers (e.g., Wing AGM, Fellowship Dinners, Tournaments)', type: 'textarea', required: false },
       { name: 'socialLinks', label: '11. Official Social Media / Group Links (Facebook page, WhatsApp group links)', type: 'textarea', required: false },
-      { name: 'mediaUploads', label: '12. Official Media Uploads (Wing Logo PNG, Committee Group Photo, Top 3 Project/Event Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
+      { name: 'logo', label: '12. Official Logo (PNG format)', type: 'file', accept: '.png', required: false },
+      { name: 'groupPhoto', label: '13. Official Group Photo', type: 'file', accept: 'image/*', required: false },
+      { name: 'mediaUploads', label: '14. Official Media Uploads (Top 3 Project/Event Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
     ]
   },
   'alumni-batches': {
@@ -188,7 +203,9 @@ export const FORMS_CONFIG: Record<string, FormConfig> = {
       { name: 'majorEvents', label: '7. Major Annual Batch Events (Get-togethers, AGMs)', type: 'textarea', required: false },
       { name: 'distinguishedAlumni', label: '8. Notable / Distinguished Alumni from the Batch', type: 'textarea', required: false },
       { name: 'socialLinks', label: '9. Official Social Media Links (Facebook Group, WhatsApp)', type: 'textarea', required: false },
-      { name: 'mediaUploads', label: '10. Official Media Uploads (Batch Logo PNG, Reunion Group Photo)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
+      { name: 'logo', label: '10. Official Logo (PNG format)', type: 'file', accept: '.png', required: false },
+      { name: 'groupPhoto', label: '11. Official Group Photo', type: 'file', accept: 'image/*', required: false },
+      { name: 'mediaUploads', label: '12. Official Media Uploads (Other Event Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
     ]
   },
   'teachers-guild': {
@@ -204,7 +221,9 @@ export const FORMS_CONFIG: Record<string, FormConfig> = {
       { name: 'mission', label: '7. Main Objectives / Mission of the Guild', type: 'textarea', required: true },
       { name: 'majorEvents', label: '8. Major Annual Events / Programs (Teachers\' Day, Staff Retreats)', type: 'textarea', required: false },
       { name: 'contributions', label: '9. Notable Contributions to the College / Staff Welfare', type: 'textarea', required: false },
-      { name: 'mediaUploads', label: '10. Official Media Uploads (Executive Committee Photo, Top Event Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
+      { name: 'logo', label: '10. Official Logo (PNG format)', type: 'file', accept: '.png', required: false },
+      { name: 'groupPhoto', label: '11. Official Group Photo', type: 'file', accept: 'image/*', required: false },
+      { name: 'mediaUploads', label: '12. Official Media Uploads (Top Event Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
     ]
   },
   'welfare-society': {
@@ -221,7 +240,9 @@ export const FORMS_CONFIG: Record<string, FormConfig> = {
       { name: 'mission', label: '8. Primary Objective / Mission of the Society', type: 'textarea', required: true },
       { name: 'annualEvents', label: '9. Annual Events / Programs (Annual Trip, Medical Camps)', type: 'textarea', required: false },
       { name: 'contributions', label: '10. Major Contributions / Support provided to the Staff or College', type: 'textarea', required: false },
-      { name: 'mediaUploads', label: '11. Official Media Uploads (Executive Board Photo, Top Event Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
+      { name: 'logo', label: '11. Official Logo (PNG format)', type: 'file', accept: '.png', required: false },
+      { name: 'groupPhoto', label: '12. Official Group Photo', type: 'file', accept: 'image/*', required: false },
+      { name: 'mediaUploads', label: '13. Official Media Uploads (Top Event Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
     ]
   },
   choir: {
@@ -237,7 +258,8 @@ export const FORMS_CONFIG: Record<string, FormConfig> = {
       { name: 'events', label: '7. Major Annual Events / Performances', type: 'textarea', required: false },
       { name: 'socialLinks', label: '8. Official Social Media / Group Links', type: 'textarea', required: false },
       { name: 'logo', label: '9. Official Logo (PNG format)', type: 'file', accept: '.png', required: false },
-      { name: 'mediaUploads', label: '10. Official Media Uploads (Group Photo, Event Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
+      { name: 'groupPhoto', label: '10. Official Group Photo', type: 'file', accept: 'image/*', required: false },
+      { name: 'mediaUploads', label: '11. Official Media Uploads (Event Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
     ]
   },
   band: {
@@ -254,7 +276,8 @@ export const FORMS_CONFIG: Record<string, FormConfig> = {
       { name: 'events', label: '8. Major Annual Events / Performances', type: 'textarea', required: false },
       { name: 'socialLinks', label: '9. Official Social Media / Group Links', type: 'textarea', required: false },
       { name: 'logo', label: '10. Official Logo (PNG format)', type: 'file', accept: '.png', required: false },
-      { name: 'mediaUploads', label: '11. Official Media Uploads (Group Photo, Event Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
+      { name: 'groupPhoto', label: '11. Official Group Photo', type: 'file', accept: 'image/*', required: false },
+      { name: 'mediaUploads', label: '12. Official Media Uploads (Event Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
     ]
   },
   cadets: {
@@ -270,7 +293,8 @@ export const FORMS_CONFIG: Record<string, FormConfig> = {
       { name: 'achievements', label: '7. Recent Achievements and Awards', type: 'textarea', required: false },
       { name: 'socialLinks', label: '8. Official Social Media / Group Links', type: 'textarea', required: false },
       { name: 'logo', label: '9. Official Logo (PNG format)', type: 'file', accept: '.png', required: false },
-      { name: 'mediaUploads', label: '10. Official Media Uploads (Group Photo, Camp Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
+      { name: 'groupPhoto', label: '10. Official Group Photo', type: 'file', accept: 'image/*', required: false },
+      { name: 'mediaUploads', label: '11. Official Media Uploads (Camp Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
     ]
   },
   scouts: {
@@ -287,7 +311,8 @@ export const FORMS_CONFIG: Record<string, FormConfig> = {
       { name: 'achievements', label: '8. Recent Achievements and Awards', type: 'textarea', required: false },
       { name: 'socialLinks', label: '9. Official Social Media / Group Links', type: 'textarea', required: false },
       { name: 'logo', label: '10. Official Logo (PNG format)', type: 'file', accept: '.png', required: false },
-      { name: 'mediaUploads', label: '11. Official Media Uploads (Group Photo, Camp Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
+      { name: 'groupPhoto', label: '11. Official Group Photo', type: 'file', accept: 'image/*', required: false },
+      { name: 'mediaUploads', label: '12. Official Media Uploads (Camp Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false }
     ]
   }
 };

@@ -52,6 +52,8 @@ export async function POST(req: NextRequest) {
 
     switch (category) {
       case 'sports': {
+        const logoUrl = await uploadSingleFile('logo');
+        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
         const logoAndPhotos = await uploadFiles('mediaUploads');
         const assistantCoaches = parseTextToArray(formData.get('assistantCoaches') as string);
         const ageGroupCaptains = parseTextToArray(formData.get('ageGroupCaptains') as string);
@@ -79,12 +81,16 @@ export async function POST(req: NextRequest) {
             annualEncounters: (formData.get('traditionalEncounters') as string) || '',
             nationalCaps,
             mediaLinks: logoAndPhotos,
+            logoUrl,
+            groupPhotoUrl,
           },
         });
         break;
       }
 
       case 'clubs': {
+        const logoUrl = await uploadSingleFile('logo');
+        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
         const mediaUploads = await uploadFiles('mediaUploads');
         const otherBoardMembers = parseTextToArray(formData.get('otherExco') as string);
         const majorProjects = parseTextToArray(formData.get('majorProjects') as string);
@@ -113,12 +119,16 @@ export async function POST(req: NextRequest) {
             notableAlumni,
             socialMediaLinks,
             mediaUploads,
+            logoUrl,
+            groupPhotoUrl,
           },
         });
         break;
       }
 
       case 'prefects': {
+        const logoUrl = await uploadSingleFile('logo');
+        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
         const guildLogo = await uploadSingleFile('guildLogo');
         const officialPhotos = await uploadFiles('officialPhotos');
         const deputyHeadPrefects = parseTextToArray(formData.get('deputyHeadPrefects') as string);
@@ -149,6 +159,8 @@ export async function POST(req: NextRequest) {
             badgeLogoUrl: guildLogo,
             officialPhotos,
             socialMediaLinks,
+            logoUrl,
+            groupPhotoUrl,
           },
         });
         break;
@@ -156,6 +168,8 @@ export async function POST(req: NextRequest) {
 
       case 'academic':
       case 'academics': {
+        const logoUrl = await uploadSingleFile('logo');
+        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
         const officialPhotos = await uploadFiles('officialPhotos');
         const notableAlumni = parseTextToArray(formData.get('notableAlumni') as string);
 
@@ -171,12 +185,16 @@ export async function POST(req: NextRequest) {
             subjectHighlights: (formData.get('subjectHighlights') as string) || '',
             notableAlumni,
             officialPhotos,
+            logoUrl,
+            groupPhotoUrl,
           },
         });
         break;
       }
 
       case 'houses': {
+        const logoUrl = await uploadSingleFile('logo');
+        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
         const houseFlagUrl = await uploadSingleFile('houseFlag');
         const actionPhotos = await uploadFiles('actionPhotos');
         const housePrefects = parseTextToArray(formData.get('housePrefects') as string);
@@ -199,12 +217,15 @@ export async function POST(req: NextRequest) {
             actionPhotos,
             notableAlumni,
             socialMediaLinks,
+            logoUrl,
+            groupPhotoUrl,
           },
         });
         break;
       }
 
       case 'associations': {
+        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
         const logoUrl = await uploadSingleFile('logo');
         const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
 
@@ -219,13 +240,17 @@ export async function POST(req: NextRequest) {
             upcomingEvents: formData.get('upcomingEvents') as string,
             logoUrl,
             socialMediaLinks,
+            logoUrl,
+            groupPhotoUrl,
           },
         });
         break;
       }
 
       case 'obu': {
-        const logoUrl = await uploadSingleFile('obuLogo');
+        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
+        let logoUrl = await uploadSingleFile('logo');
+        if (!logoUrl) logoUrl = await uploadSingleFile('obuLogo');
         const distinguishedAlumni = parseTextToArray(formData.get('distinguishedAlumni') as string);
         const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
 
@@ -241,12 +266,16 @@ export async function POST(req: NextRequest) {
             distinguishedAlumni,
             logoUrl,
             socialMediaLinks,
+            logoUrl,
+            groupPhotoUrl,
           },
         });
         break;
       }
 
       case 'sports-wings': {
+        const logoUrl = await uploadSingleFile('logo');
+        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
         const mediaUploads = await uploadFiles('mediaUploads');
         const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
 
@@ -264,12 +293,16 @@ export async function POST(req: NextRequest) {
             majorEvents: formData.get('majorEvents') as string,
             socialMediaLinks,
             mediaUploads,
+            logoUrl,
+            groupPhotoUrl,
           },
         });
         break;
       }
 
       case 'alumni-batches': {
+        const logoUrl = await uploadSingleFile('logo');
+        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
         const mediaUploads = await uploadFiles('mediaUploads');
         const distinguishedAlumni = parseTextToArray(formData.get('distinguishedAlumni') as string);
         const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
@@ -286,12 +319,16 @@ export async function POST(req: NextRequest) {
             distinguishedAlumni,
             socialMediaLinks,
             mediaUploads,
+            logoUrl,
+            groupPhotoUrl,
           },
         });
         break;
       }
 
       case 'teachers-guild': {
+        const logoUrl = await uploadSingleFile('logo');
+        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
         const mediaUploads = await uploadFiles('mediaUploads');
 
         result = await prisma.teachersGuildForm.create({
@@ -306,12 +343,16 @@ export async function POST(req: NextRequest) {
             majorEvents: formData.get('majorEvents') as string,
             contributions: formData.get('contributions') as string,
             mediaUploads,
+            logoUrl,
+            groupPhotoUrl,
           },
         });
         break;
       }
 
       case 'welfare-society': {
+        const logoUrl = await uploadSingleFile('logo');
+        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
         const mediaUploads = await uploadFiles('mediaUploads');
 
         result = await prisma.welfareSocietyForm.create({
@@ -327,12 +368,15 @@ export async function POST(req: NextRequest) {
             annualEvents: formData.get('annualEvents') as string,
             contributions: formData.get('contributions') as string,
             mediaUploads,
+            logoUrl,
+            groupPhotoUrl,
           },
         });
         break;
       }
 
       case 'choir': {
+        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
         const logoUrl = await uploadSingleFile('logo');
         const mediaUploads = await uploadFiles('mediaUploads');
         const leaders = parseTextToArray(formData.get('leaders') as string);
@@ -350,12 +394,14 @@ export async function POST(req: NextRequest) {
             socialMediaLinks,
             mediaUploads,
             logoUrl,
+            groupPhotoUrl,
           },
         });
         break;
       }
 
       case 'band': {
+        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
         const logoUrl = await uploadSingleFile('logo');
         const mediaUploads = await uploadFiles('mediaUploads');
         const committee = parseTextToArray(formData.get('committee') as string);
@@ -374,12 +420,14 @@ export async function POST(req: NextRequest) {
             socialMediaLinks,
             mediaUploads,
             logoUrl,
+            groupPhotoUrl,
           },
         });
         break;
       }
 
       case 'cadets': {
+        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
         const logoUrl = await uploadSingleFile('logo');
         const mediaUploads = await uploadFiles('mediaUploads');
         const corporals = parseTextToArray(formData.get('corporals') as string);
@@ -397,12 +445,14 @@ export async function POST(req: NextRequest) {
             socialMediaLinks,
             mediaUploads,
             logoUrl,
+            groupPhotoUrl,
           },
         });
         break;
       }
 
       case 'scouts': {
+        const groupPhotoUrl = await uploadSingleFile('groupPhoto');
         const logoUrl = await uploadSingleFile('logo');
         const mediaUploads = await uploadFiles('mediaUploads');
         const patrolLeaders = parseTextToArray(formData.get('patrolLeaders') as string);
@@ -421,6 +471,7 @@ export async function POST(req: NextRequest) {
             socialMediaLinks,
             mediaUploads,
             logoUrl,
+            groupPhotoUrl,
           },
         });
         break;
