@@ -375,20 +375,15 @@ model User {
 
 model BensWesleyCommitteeForm {
   id               String   @id @default(auto()) @map("_id") @db.ObjectId
-  committeeName    String
   currentChairman  String
-  secretaryName    String
-  treasurerName    String
   pastChairmen     String[]
   membersCount     Int
   matchHistory     String?
   notableMoments   String?
   socialMediaLinks String[]
-  mediaUploads     String[]
   logoUrl          String?
   groupPhotoUrl    String?
   userId           String?
-  achievementPhotos String[]
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 }

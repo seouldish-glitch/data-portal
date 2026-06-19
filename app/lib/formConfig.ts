@@ -352,19 +352,14 @@ export const FORMS_CONFIG: Record<string, FormConfig> = {
     title: 'Bens-Wesley Committee Data Collection Form',
     subtitle: '(To be filled by the Committee President or Secretary)',
     fields: [
-      { name: 'committeeName', label: '1. Name of the Committee', type: 'text', required: true },
-      { name: 'currentChairman', label: "2. Current Chairman's Name", type: 'text', required: true },
-      { name: 'secretaryName', label: "3. Current Secretary's Name", type: 'text', required: true },
-      { name: 'treasurerName', label: "4. Current Treasurer's Name", type: 'text', required: true },
-      { name: 'pastChairmen', label: '5. Names of Past Chairmen', type: 'textarea', required: false },
-      { name: 'membersCount', label: '6. Total Number of Committee Members', type: 'number', required: true },
-      { name: 'matchHistory', label: '7. Brief History of the Big Match (St. Benedict\'s vs Wesley)', type: 'textarea', required: false },
-      { name: 'notableMoments', label: '8. Notable Matches / Memorable Moments', type: 'textarea', required: false },
-      { name: 'socialLinks', label: '9. Official Social Media / Group Links', type: 'textarea', required: false },
-      { name: 'logo', label: '10. Official Committee Logo (PNG format)', type: 'file', accept: '.png', required: false },
-      { name: 'groupPhoto', label: '11. Official Group Photo', type: 'file', accept: 'image/*', required: false },
-      { name: 'mediaUploads', label: '12. Official Media Uploads (Event Photos)', type: 'file', accept: 'image/*, .zip, .rar', required: false },
-      { name: 'achievementPhotos', label: 'Achievement / Old Big Match Photos', type: 'file', accept: 'image/*, .zip, .rar', required: false }
+      { name: 'currentChairman', label: "1. Current Co Chairman's Name", type: 'text', required: true },
+      { name: 'pastChairmen', label: '2. Names of Past Chairmen', type: 'textarea', required: false },
+      { name: 'membersCount', label: '3. Total Number of Committee Members', type: 'number', required: true },
+      { name: 'matchHistory', label: '4. Brief History of the Big Match (St. Benedict\'s vs Wesley)', type: 'textarea', required: false },
+      { name: 'notableMoments', label: '5. Notable Matches / Memorable Moments', type: 'textarea', required: false },
+      { name: 'socialLinks', label: '6. Official Social Media / Group Links', type: 'textarea', required: false },
+      { name: 'logo', label: '7. Official Committee Logo (PNG format)', type: 'file', accept: '.png', required: false },
+      { name: 'groupPhoto', label: '8. Official Group Photo', type: 'file', accept: 'image/*', required: false }
     ]
   }
 };

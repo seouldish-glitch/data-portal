@@ -595,7 +595,6 @@ export async function POST(req: NextRequest) {
         if (!groupPhotoUrl) groupPhotoUrl = formData.get('existing_groupPhoto') as string | null;
         let logoUrl = await uploadSingleFile('logo');
         if (!logoUrl) logoUrl = formData.get('existing_logo') as string | null;
-        const mediaUploads = [...(formData.getAll('existing_mediaUploads') as string[]), ...(await uploadFiles('mediaUploads'))];
         const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
 
         const pastChairmen = parseTextToArray(formData.get('pastChairmen') as string);
@@ -604,17 +603,12 @@ export async function POST(req: NextRequest) {
           where: { id },
           data: {
             userId,
-            achievementPhotos,
-            committeeName: (formData.get('committeeName') as string) || '',
             currentChairman: (formData.get('currentChairman') as string) || '',
-            secretaryName: (formData.get('secretaryName') as string) || '',
-            treasurerName: (formData.get('treasurerName') as string) || '',
             pastChairmen,
             membersCount: parseIntSafe(formData.get('membersCount') as string),
             matchHistory: (formData.get('matchHistory') as string) || '',
             notableMoments: (formData.get('notableMoments') as string) || '',
             socialMediaLinks,
-            mediaUploads,
             logoUrl,
             groupPhotoUrl,
           },

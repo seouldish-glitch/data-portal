@@ -540,7 +540,6 @@ export async function POST(req: NextRequest) {
       case 'bens-wesley-committee': {
         const groupPhotoUrl = await uploadSingleFile('groupPhoto');
         const logoUrl = await uploadSingleFile('logo');
-        const mediaUploads = await uploadFiles('mediaUploads');
         const socialMediaLinks = parseTextToArray(formData.get('socialLinks') as string);
 
         const pastChairmen = parseTextToArray(formData.get('pastChairmen') as string);
@@ -548,17 +547,12 @@ export async function POST(req: NextRequest) {
         result = await prisma.bensWesleyCommitteeForm.create({
           data: {
             userId,
-            achievementPhotos,
-            committeeName: (formData.get('committeeName') as string) || '',
             currentChairman: (formData.get('currentChairman') as string) || '',
-            secretaryName: (formData.get('secretaryName') as string) || '',
-            treasurerName: (formData.get('treasurerName') as string) || '',
             pastChairmen,
             membersCount: parseIntSafe(formData.get('membersCount') as string),
             matchHistory: (formData.get('matchHistory') as string) || '',
             notableMoments: (formData.get('notableMoments') as string) || '',
             socialMediaLinks,
-            mediaUploads,
             logoUrl,
             groupPhotoUrl,
           },
