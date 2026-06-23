@@ -12,6 +12,10 @@ export async function GET(req: NextRequest, { params }: { params: { category: st
     }
 
     const { category, id } = params;
+
+    if (!id || !/^[0-9a-fA-F]{24}$/.test(id)) {
+      return NextResponse.json({ error: 'Invalid ID format' }, { status: 400 });
+    }
     let submission;
 
     switch (category) {

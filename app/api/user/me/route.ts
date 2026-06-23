@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
     const cookieStore = cookies();
     const userId = cookieStore.get('user_session')?.value;
 
-    if (!userId) {
+    if (!userId || !/^[0-9a-fA-F]{24}$/.test(userId)) {
       return NextResponse.json({ user: null }, { status: 200 });
     }
 
