@@ -99,6 +99,7 @@ export default function Home() {
       id: 16,
       title: "Orchestra",
       description: "Information regarding the orchestra, leaders, and performances.",
+      slug: "orchestra",
     },
     {
       id: 17,
