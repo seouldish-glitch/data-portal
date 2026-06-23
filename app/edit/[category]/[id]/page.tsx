@@ -23,9 +23,6 @@ export default function EditPage({
   const [removedFiles, setRemovedFiles] = useState<Record<string, string[]>>(
     {},
   );
-  const [removedFiles, setRemovedFiles] = useState<Record<string, string[]>>(
-    {},
-  );
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
@@ -134,34 +131,6 @@ export default function EditPage({
     });
   };
 
-  const getExistingFiles = (name: string) => {
-    if (!initialData) return [];
-
-    // Some backend fields don't match frontend exact names perfectly for files in some edge cases
-    // but we mapped them well in the update script.
-    // Let's use the field.name or mapped names
-    let backendName = name;
-    if (name === "logo") backendName = "logoUrl";
-    if (name === "groupPhoto") backendName = "groupPhotoUrl";
-    if (name === "mediaUploads") backendName = "mediaLinks"; // sportForm uses mediaLinks
-    if (name === "houseFlag") backendName = "houseFlagUrl";
-    if (name === "guildLogo") backendName = "badgeLogoUrl";
-
-    let val = initialData[backendName] || initialData[name];
-    if (!val) return [];
-    if (!Array.isArray(val)) val = [val];
-
-    const removed = removedFiles[name] || [];
-    return val.filter((url: string) => !removed.includes(url));
-  };
-
-  const handleRemoveFile = (fieldName: string, url: string) => {
-    setRemovedFiles((prev) => ({
-      ...prev,
-      [fieldName]: [...(prev[fieldName] || []), url],
-    }));
-  };
-
   const getDefVal = (name: string) => {
     if (!initialData) return "";
     const val = initialData[name];
@@ -193,7 +162,7 @@ export default function EditPage({
       const newFormData = new FormData();
       const uploadPromises: Promise<void>[] = [];
 
-      for (const [key, value] of formData.entries()) {
+      formData.forEach((value, key) => {
         if (value instanceof File && value.size > 0) {
           const uploadData = new FormData();
           uploadData.append("file", value);
@@ -222,7 +191,7 @@ export default function EditPage({
           // Keep existing non-empty non-file data
           newFormData.append(key, value);
         }
-      }
+      });
 
       await Promise.all(uploadPromises);
 

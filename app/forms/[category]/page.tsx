@@ -100,7 +100,7 @@ export default function FormPage({ params }: { params: { category: string } }) {
       const newFormData = new FormData();
       const uploadPromises: Promise<void>[] = [];
 
-      for (const [key, value] of formData.entries()) {
+      formData.forEach((value, key) => {
         if (value instanceof File && value.size > 0) {
           const uploadData = new FormData();
           uploadData.append("file", value);
@@ -129,7 +129,7 @@ export default function FormPage({ params }: { params: { category: string } }) {
           // Keep existing non-empty non-file data
           newFormData.append(key, value);
         }
-      }
+      });
 
       await Promise.all(uploadPromises);
 
